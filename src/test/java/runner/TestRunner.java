@@ -20,7 +20,7 @@ import io.cucumber.junit.CucumberOptions;
         }       
 
 )
-public class test1runner 
+public class TestRunner 
 {
 	
 }
