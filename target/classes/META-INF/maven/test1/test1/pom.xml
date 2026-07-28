@@ -3,6 +3,13 @@
   <groupId>test1</groupId>
   <artifactId>test1</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  
+   <!-- Selenium Java -->
+    <properties>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
   <dependencies>
 
     <!-- Selenium Java -->
@@ -42,11 +49,18 @@
         <version>5.9.2</version>
     </dependency>
 
-    
+<!-- Extent Report Adapter for Cucumber 7 -->
 <dependency>
-    <groupId>net.masterthought</groupId>
-    <artifactId>cucumber-reporting</artifactId>
-    <version>5.8.4</version>
+    <groupId>tech.grasshopper</groupId>
+    <artifactId>extentreports-cucumber7-adapter</artifactId>
+    <version>1.14.0</version>
+</dependency>
+
+<!-- Extent Report -->
+<dependency>
+    <groupId>com.aventstack</groupId>
+    <artifactId>extentreports</artifactId>
+    <version>5.1.2</version>
 </dependency>
     
 
@@ -66,8 +80,10 @@
             <artifactId>maven-surefire-plugin</artifactId>
             <version>3.2.5</version>
             <configuration>
-                <useModulePath>false</useModulePath>
-            </configuration>
+                    <source>21</source>
+                    <target>21</target>
+                </configuration>
+            
         </plugin>
     </plugins>
 </build>
