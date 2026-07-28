@@ -23,7 +23,7 @@ public class BaseClass
 	    {
 	        byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
 
-	        scenario.attach(screenshot, "image/png", "Step Screenshot");
+	        scenario.attach(screenshot, "png", "Step Screenshot");
          } 
 	    catch (Exception e)
 	    {
