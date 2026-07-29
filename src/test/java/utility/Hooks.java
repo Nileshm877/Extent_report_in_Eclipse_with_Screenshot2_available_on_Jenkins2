@@ -1,6 +1,7 @@
 package utility;
 
 import io.cucumber.java.AfterStep;
+import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 
@@ -21,8 +22,11 @@ public class Hooks extends BaseClass
 	{
 	   super.captureScreenshot(scenario);
 	}
+	
+	
 
 	}
+
 
 	
 	
