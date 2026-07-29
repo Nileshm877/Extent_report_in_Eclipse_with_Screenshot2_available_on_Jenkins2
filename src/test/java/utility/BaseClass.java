@@ -18,6 +18,11 @@ public class BaseClass
 	{
 	//System.setProperty("webdriver.chrome.driver","C:\\Users\\sai\\eclipse-workspace\\Cucumber_report_with_Screenshot\\Browser\\chromedriver.exe");
 	ChromeOptions options=new ChromeOptions();
+	options.addArguments("--headless");
+	options.addArguments("--no-sandbox");
+	options.addArguments("--disable-dev-shm-usage");
+	options.addArguments("--disable-gpu");
+	options.addArguments("--start-maximized");
 	//options.addArguments("--remote-allow-origin=*");
 	driver=new ChromeDriver(options);
 	}
