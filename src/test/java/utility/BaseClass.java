@@ -27,23 +27,9 @@ public class BaseClass
 	{  try 
 	    {
 
-		 File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		 byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
 
-	        String fileName = System.currentTimeMillis() + ".png";
-
-	        File screenshotDir = new File("target/screenshots");
-	        if (!screenshotDir.exists()) {
-	            screenshotDir.mkdirs();
-	        }
-
-	        File dest = new File(screenshotDir, fileName);
-
-	        FileUtils.copyFile(src, dest);
-
-	        // Attach to Cucumber report
-	        byte[] screenshot = Files.readAllBytes(dest.toPath());
 	        scenario.attach(screenshot, "image/png", "Step Screenshot");
-
 		
          } 
 	    catch (Exception e)
