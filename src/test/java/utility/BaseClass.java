@@ -27,13 +27,22 @@ public class BaseClass
 	{  try 
 	    {
 
-		File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		 File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 
-		String fileName = System.currentTimeMillis() + ".png";
+	        String fileName = System.currentTimeMillis() + ".png";
 
-		File dest = new File("target/screenshots/" + fileName);
+	        File screenshotDir = new File("target/screenshots");
+	        if (!screenshotDir.exists()) {
+	            screenshotDir.mkdirs();
+	        }
 
-		FileUtils.copyFile(src, dest);
+	        File dest = new File(screenshotDir, fileName);
+
+	        FileUtils.copyFile(src, dest);
+
+	        // Attach to Cucumber report
+	        byte[] screenshot = Files.readAllBytes(dest.toPath());
+	        scenario.attach(screenshot, "image/png", "Step Screenshot");
 
 		
          } 
