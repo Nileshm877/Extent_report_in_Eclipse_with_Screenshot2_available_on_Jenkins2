@@ -10,7 +10,8 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import io.cucumber.java.Scenario;
 import java.io.File;
 import java.nio.file.Files;
-import java.util.Base64;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import org.apache.commons.io.FileUtils;
 public class BaseClass 
@@ -29,12 +30,23 @@ public class BaseClass
 	{  try 
 	    {
 
-		String base64 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BASE64);
+		 String time = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
 
-		scenario.attach(
-		        Base64.getDecoder().decode(base64),
-		        "image/png",
-		        "Step Screenshot");
+	        String screenshotName = scenario.getName().replaceAll(" ", "_") + "_" + time + ".png";
+
+	        String screenshotPath = System.getProperty("user.dir")
+	                + "/target/screenshots/" + screenshotName;
+
+	        File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+
+	        File dest = new File(screenshotPath);
+
+	        FileUtils.copyFile(src, dest);
+
+	        // Attach to Cucumber report
+	        byte[] screenshot = FileUtils.readFileToByteArray(dest);
+	        scenario.attach(screenshot, "image/png", "Step Screenshot");
+
 		
          } 
 	    catch (Exception e)
