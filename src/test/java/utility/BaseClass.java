@@ -27,18 +27,13 @@ public class BaseClass
 	{  try 
 	    {
 
-		        File src = ((TakesScreenshot) driver)
-		                .getScreenshotAs(OutputType.FILE);
+		File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 
-		        String fileName = System.currentTimeMillis() + ".png";
+		String fileName = System.currentTimeMillis() + ".png";
 
-		        File dest = new File("target/screenshots/" + fileName);
+		File dest = new File("target/screenshots/" + fileName);
 
-		        FileUtils.copyFile(src, dest);
-
-		        byte[] screenshot = Files.readAllBytes(dest.toPath());
-
-		        scenario.attach(screenshot, "image/png", "Step Screenshot");
+		FileUtils.copyFile(src, dest);
 
 		
          } 
