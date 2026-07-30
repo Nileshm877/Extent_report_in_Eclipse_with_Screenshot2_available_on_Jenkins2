@@ -30,13 +30,18 @@ public class BaseClass
 	public void captureScreenshot(Scenario scenario) 
 	{  try 
 	    {
+		
 
-		String base64 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BASE64);
+        byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
 
-		scenario.attach(
-		        Base64.getDecoder().decode(base64),
-		        "image/png",
-		        "Step Screenshot");
+        scenario.attach(screenshot, "image/png", "Step Screenshot");
+
+//		String base64 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BASE64);
+//
+//		scenario.attach(
+//		        Base64.getDecoder().decode(base64),
+//		        "image/png",
+//		        "Step Screenshot");
 
 		
          } 
