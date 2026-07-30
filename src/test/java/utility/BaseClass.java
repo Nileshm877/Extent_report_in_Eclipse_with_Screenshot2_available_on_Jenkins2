@@ -11,6 +11,7 @@ import io.cucumber.java.Scenario;
 import java.io.File;
 import java.nio.file.Files;
 import java.text.SimpleDateFormat;
+import java.util.Base64;
 import java.util.Date;
 
 import org.apache.commons.io.FileUtils;
@@ -30,22 +31,12 @@ public class BaseClass
 	{  try 
 	    {
 
-		 String time = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+		String base64 = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BASE64);
 
-	        String screenshotName = scenario.getName().replaceAll(" ", "_") + "_" + time + ".png";
-
-	        String screenshotPath = System.getProperty("user.dir")
-	                + "/target/screenshots/" + screenshotName;
-
-	        File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-
-	        File dest = new File(screenshotPath);
-
-	        FileUtils.copyFile(src, dest);
-
-	        // Attach to Cucumber report
-	        byte[] screenshot = FileUtils.readFileToByteArray(dest);
-	        scenario.attach(screenshot, "image/png", "Step Screenshot");
+		scenario.attach(
+		        Base64.getDecoder().decode(base64),
+		        "image/png",
+		        "Step Screenshot");
 
 		
          } 
