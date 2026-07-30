@@ -18,11 +18,7 @@ public class BaseClass
 	{
 	//System.setProperty("webdriver.chrome.driver","C:\\Users\\sai\\eclipse-workspace\\Cucumber_report_with_Screenshot\\Browser\\chromedriver.exe");
 	ChromeOptions options=new ChromeOptions();
-	options.addArguments("--headless");
-	options.addArguments("--no-sandbox");
-	options.addArguments("--disable-dev-shm-usage");
-	options.addArguments("--disable-gpu");
-	options.addArguments("--start-maximized");
+	
 	//options.addArguments("--remote-allow-origin=*");
 	driver=new ChromeDriver(options);
 	}
@@ -30,9 +26,6 @@ public class BaseClass
 	public void captureScreenshot(Scenario scenario) 
 	{  try 
 	    {
-		
-
-		   
 
 		        File src = ((TakesScreenshot) driver)
 		                .getScreenshotAs(OutputType.FILE);
@@ -46,8 +39,6 @@ public class BaseClass
 		        byte[] screenshot = Files.readAllBytes(dest.toPath());
 
 		        scenario.attach(screenshot, "image/png", "Step Screenshot");
-
-		    
 
 		
          } 
